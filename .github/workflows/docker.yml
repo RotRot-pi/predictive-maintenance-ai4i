@@ -22,6 +22,18 @@ jobs:
         run: |
           sleep 5
           curl -f http://127.0.0.1:8000/health
+      - name: Test prediction
+        run: |
+          curl -f -X POST http://127.0.0.1:8000/predict \
+            -H "Content-Type: application/json" \
+            -d '{
+              "air_temperature": 298.5,
+              "process_temperature": 309.2,
+              "rotational_speed": 1420,
+              "torque": 55.3,
+              "tool_wear": 190,
+              "product_type": "M"
+            }'
 
       - name: Cleanup
         if: always()
