@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_recall_curve
 from xgboost import XGBClassifier
 
-from preprocessing import preprocess_features
+from src.preprocessing import preprocess_features
 
 
 # Project paths
