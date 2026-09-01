@@ -1,0 +1,28 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build image
+        run: docker build -t predictive-maintenance-api .
+
+      - name: Run container
+        run: docker run -d --name app -p 8000:8000 predictive-maintenance-api
+
+      - name: Test health
+        run: |
+          sleep 5
+          curl -f http://127.0.0.1:8000/health
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f app || true
