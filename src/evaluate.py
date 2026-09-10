@@ -10,7 +10,7 @@ from sklearn.metrics import (
     confusion_matrix,
 )
 
-from preprocessing import preprocess_features
+from src.preprocessing import preprocess_features
 
 
 DATA_PATH = "data/raw/ai4i2020_raw.csv"
